@@ -6,7 +6,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const isLoading = ref(true)
 
+const nowTime = ref('')
+
 onMounted(() => {
+  setInterval(() => {
+    nowTime.value = new Date().toLocaleString()
+  })
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
@@ -31,22 +36,30 @@ onMounted(() => {
   }
   animate()
 
+  const loader = new GLTFLoader()
+
   function cancelTip() {
     isLoading.value = false
   }
-  const loader = new GLTFLoader()
 
   loader.load('gltf/scene.gltf', (gltf) => {
     scene.add(gltf.scene)
-  }, undefined, cancelTip, (error) => {
+  }, cancelTip, (error) => {
     console.error(error)
   })
 })
 </script>
 
 <template>
-  <div v-if="isLoading" bg-black text-white w-full>
-    <h1>请耐心等待数据加载。。。</h1>
+  <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
+    <div>
+      <div text-8 text-center>
+        北京时间：{{ nowTime }}
+      </div>
+      <div text-8>
+        亲爱的，请耐心等待一下，让数据飞一会儿。。。
+      </div>
+    </div>
   </div>
 </template>
 
