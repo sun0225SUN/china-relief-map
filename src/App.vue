@@ -20,6 +20,14 @@ onMounted(() => {
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000)
 
+  const loader = new GLTFLoader()
+
+  loader.load('gltf/scene.gltf', (gltf) => {
+    scene.add(gltf.scene)
+  }, cancelTip, (error) => {
+    console.error(error)
+  })
+
   const controls = new OrbitControls(camera, renderer.domElement)
 
   // controls.update() must be called after any manual changes to the camera's transform
@@ -31,12 +39,6 @@ onMounted(() => {
 
     // required if controls.enableDamping or controls.autoRotate are set to true
     controls.update()
-    const loader = new GLTFLoader()
-    loader.load('gltf/scene.gltf', (gltf) => {
-      scene.add(gltf.scene)
-    }, cancelTip, (error) => {
-      console.error(error)
-    })
     renderer.render(scene, camera)
   }
   animate()
