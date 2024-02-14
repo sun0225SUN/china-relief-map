@@ -20,7 +20,7 @@ onMounted(() => {
   <Map />
   <div absolute w-full top-8>
     <div text-4 text-white text-center select-none>
-      我国地形图立体展示 -- By 小孙同学
+      我国地形图立体示意 -- By 小孙同学
     </div>
   </div>
   <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
