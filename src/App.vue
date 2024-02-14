@@ -38,7 +38,7 @@ onMounted(() => {
 
   loader.load('gltf/scene.gltf', (gltf) => {
     scene.add(gltf.scene)
-  }, cancelTip, (error) => {
+  }, undefined, cancelTip, (error) => {
     console.error(error)
   })
 })
