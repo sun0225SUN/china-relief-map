@@ -54,6 +54,11 @@ onMounted(() => {
 </script>
 
 <template>
+  <div absolute w-full top-2>
+    <div text-3r text-red text-center>
+      北京时间：{{ nowTime }}
+    </div>
+  </div>
   <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
     <div>
       <div text-8>
