@@ -49,6 +49,12 @@ onMounted(() => {
       isLoading.value = false
     }, 5000)
   }
+  // 监听窗口大小变化
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+  })
 })
 </script>
 
