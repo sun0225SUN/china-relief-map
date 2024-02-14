@@ -1,8 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import * as THREE from 'three'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import Map from './components/map.vue'
 
 const isLoading = ref(true)
 
@@ -12,56 +10,17 @@ onMounted(() => {
   setInterval(() => {
     nowTime.value = new Date().toLocaleString()
   })
-  const renderer = new THREE.WebGLRenderer()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  document.body.appendChild(renderer.domElement)
-
-  const scene = new THREE.Scene()
-
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000)
-
-  const controls = new OrbitControls(camera, renderer.domElement)
-
-  // controls.update() must be called after any manual changes to the camera's transform
-  camera.position.set(0, 20, 100)
-  controls.update()
-
-  const loader = new GLTFLoader()
-
-  loader.load('gltf/scene.gltf', (gltf) => {
-    scene.add(gltf.scene)
-  }, cancelTip, (error) => {
-    console.error(error)
-  })
-
-  function animate() {
-    requestAnimationFrame(animate)
-
-    // required if controls.enableDamping or controls.autoRotate are set to true
-    controls.update()
-    renderer.render(scene, camera)
-  }
-
-  animate()
-
-  function cancelTip() {
-    setTimeout(() => {
-      isLoading.value = false
-    }, 5000)
-  }
-  // 监听窗口大小变化
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-  })
+  setTimeout(() => {
+    isLoading.value = false
+  }, 5000)
 })
 </script>
 
 <template>
-  <div absolute w-full top-2>
-    <div text-3r text-red text-center>
-      北京时间：{{ nowTime }}
+  <Map />
+  <div absolute w-full top-8>
+    <div text-4 text-white text-center select-none>
+      中国地形图立体展示 -- By 小孙同学
     </div>
   </div>
   <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
@@ -72,6 +31,11 @@ onMounted(() => {
       <div text-8>
         大概需要半分钟的时间，黑屏也是在加载中，不要离开！！！
       </div>
+    </div>
+  </div>
+  <div absolute w-full bottom-5>
+    <div text-3 text-red text-center select-none>
+      当前时间：{{ nowTime }}
     </div>
   </div>
 </template>
