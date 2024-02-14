@@ -48,7 +48,7 @@ onMounted(() => {
     // 10s 后取消加载提示
     setTimeout(() => {
       isLoading.value = false
-    }, 15000)
+    }, 10000)
   }
 })
 </script>
@@ -56,11 +56,11 @@ onMounted(() => {
 <template>
   <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
     <div>
-      <div text-8 text-center>
-        北京时间：{{ nowTime }}
+      <div text-8>
+        亲爱的，请耐心等待一下，让数据飞一会儿......
       </div>
       <div text-8>
-        亲爱的，请耐心等待一下，让数据飞一会儿。。。
+        大概需要半分钟的时间，黑屏也是在加载中，不要离开！！！
       </div>
     </div>
   </div>
