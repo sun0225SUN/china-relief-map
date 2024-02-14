@@ -45,10 +45,9 @@ onMounted(() => {
   animate()
 
   function cancelTip() {
-    // 10s 后取消加载提示
     setTimeout(() => {
       isLoading.value = false
-    }, 10000)
+    }, 5000)
   }
 })
 </script>
