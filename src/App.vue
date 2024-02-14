@@ -1,8 +1,10 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
+const isLoading = ref(true)
 
 onMounted(() => {
   const renderer = new THREE.WebGLRenderer()
@@ -29,15 +31,24 @@ onMounted(() => {
   }
   animate()
 
+  function cancelTip() {
+    isLoading.value = false
+  }
   const loader = new GLTFLoader()
 
   loader.load('gltf/scene.gltf', (gltf) => {
     scene.add(gltf.scene)
-  }, undefined, (error) => {
+  }, cancelTip, (error) => {
     console.error(error)
   })
 })
 </script>
+
+<template>
+  <div v-if="isLoading" bg-black text-white w-full>
+    <h1>请耐心等待数据加载。。。</h1>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 </style>
