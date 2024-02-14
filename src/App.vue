@@ -31,22 +31,19 @@ onMounted(() => {
 
     // required if controls.enableDamping or controls.autoRotate are set to true
     controls.update()
-
+    const loader = new GLTFLoader()
+    loader.load('gltf/scene.gltf', (gltf) => {
+      scene.add(gltf.scene)
+    }, cancelTip, (error) => {
+      console.error(error)
+    })
     renderer.render(scene, camera)
   }
   animate()
 
-  const loader = new GLTFLoader()
-
   function cancelTip() {
     isLoading.value = false
   }
-
-  loader.load('gltf/scene.gltf', (gltf) => {
-    scene.add(gltf.scene)
-  }, cancelTip, (error) => {
-    console.error(error)
-  })
 })
 </script>
 
