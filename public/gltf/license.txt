@@ -1,0 +1,11 @@
+Model Information:
+* title:	Topographic map of China
+* source:	https://sketchfab.com/3d-models/topographic-map-of-china-a782b9298a0b45a193f12dab478a98c2
+* author:	Zhang_GEO (https://sketchfab.com/bluepaint0218)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Topographic map of China" (https://sketchfab.com/3d-models/topographic-map-of-china-a782b9298a0b45a193f12dab478a98c2) by Zhang_GEO (https://sketchfab.com/bluepaint0218) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

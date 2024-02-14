@@ -1,35 +1,43 @@
 <script setup>
-import MyComponent from './components/MyComponent.vue'
+import { onMounted } from 'vue'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
+onMounted(() => {
+  const renderer = new THREE.WebGLRenderer()
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  document.body.appendChild(renderer.domElement)
+
+  const scene = new THREE.Scene()
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000)
+
+  const controls = new OrbitControls(camera, renderer.domElement)
+
+  // controls.update() must be called after any manual changes to the camera's transform
+  camera.position.set(0, 20, 100)
+  controls.update()
+
+  function animate() {
+    requestAnimationFrame(animate)
+
+    // required if controls.enableDamping or controls.autoRotate are set to true
+    controls.update()
+
+    renderer.render(scene, camera)
+  }
+  animate()
+
+  const loader = new GLTFLoader()
+
+  loader.load('gltf/scene.gltf', (gltf) => {
+    scene.add(gltf.scene)
+  }, undefined, (error) => {
+    console.error(error)
+  })
+})
 </script>
-
-<template>
-  <div class="flex flex-col h-[100vh] justify-center items-center">
-    <MyComponent msg="Vue" />
-    <div
-      text="44px"
-      color="blue"
-    >
-      Unocss
-    </div>
-    <a-button type="primary">
-      Ant-Design-vue
-    </a-button>
-    <div class="flex h-[60px] justify-between items-center">
-      <RouterLink to="/" class="w-[80px]">
-        <div class="text-center">
-          Home
-        </div>
-      </RouterLink>
-      <RouterLink to="/about" class="w-[80px]">
-        <div class="text-center">
-          About
-        </div>
-      </RouterLink>
-    </div>
-
-    <RouterView />
-  </div>
-</template>
 
 <style lang="scss" scoped>
 </style>
