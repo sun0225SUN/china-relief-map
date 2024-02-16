@@ -20,7 +20,7 @@ onMounted(() => {
   <Map />
   <div absolute w-full top-8>
     <div text-4 text-white text-center select-none>
-      中国三大阶梯地形示意图 -- By 小孙同学
+      中国地势三大阶梯地形示意图 -- By 小孙同学
     </div>
   </div>
   <div v-if="isLoading" bg-black text-white flex h-100vh w-full justify-center items-center>
